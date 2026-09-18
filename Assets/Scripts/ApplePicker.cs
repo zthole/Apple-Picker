@@ -12,12 +12,15 @@ public class ApplePicker : MonoBehaviour {
 
     public float basketSpacingY = 2f;
 
+    public List<GameObject> basketList;
     void Start() {
+        basketList = new List<GameObject>();
         for (int i=0; i < numBaskets; i++) {
             GameObject tBasketGO = Instantiate<GameObject>(basketPrefab);
             Vector3	pos = Vector3.zero;
             pos.y = basketBottomY + (basketSpacingY * i);
             tBasketGO.transform.position = pos;
+            basketList.Add(tBasketGO);
         }
     }
 
@@ -27,5 +30,19 @@ public class ApplePicker : MonoBehaviour {
         foreach (GameObject tempGO in appleArray) {
             Destroy(tempGO);
         }
+
+        // Destroy one of the Baskets
+        // Get the index of the last Basket in basketList
+        int basketIndex = basketList.Count -1;
+        // Get a reference to that Basket GameObject
+        GameObject basketGO = basketList[basketIndex];
+        // Remove the Basket from teh list and destroy the GameObject
+        basketList.RemoveAt(basketIndex);
+        Destroy(basketGO);
+
+        // If there are no Baskets left, restart the game
+        if (basketList.Count == 0) {
+            SceneManager.LoadScene("_Scene_0");
+        } 
     }
 }
