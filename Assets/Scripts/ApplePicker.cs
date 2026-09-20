@@ -45,4 +45,8 @@ public class ApplePicker : MonoBehaviour {
             SceneManager.LoadScene("_Scene_0");
         } 
     }
+
+    public void BranchCaught() {
+        
+    }
 }

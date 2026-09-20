@@ -29,6 +29,10 @@ public class AppleTree : MonoBehaviour {
         Invoke("DropApple", secondsBetweenAppleDrops);	
     }
 
+    void DropBranch() {
+        
+    }
+
     void Update() {
         // Basic Movement
         Vector3	pos = transform.position;	
