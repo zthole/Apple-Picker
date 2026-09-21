@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 public class AppleTree : MonoBehaviour {
     [Header("Inscribed")]
-    // Prefab for instantiating apples
+    // Prefab for instantiating objects
     public GameObject applePrefab;
+    public GameObject branchPrefab;
 
     // Speed at which the AppleTree	moves
     public float speed = 1f;
@@ -18,9 +19,13 @@ public class AppleTree : MonoBehaviour {
     // Rate at which Apples will be instantiated
     public float secondsBetweenAppleDrops = 1f;
 
+    // Rate at which Branches will be instantiated
+    public float secondsBetweenBranchDrops = 5f;
+
     void Start() {
         // Dropping apples every second
         Invoke("DropApple",	2f);
+        Invoke("DropBranch", 2f);
         }
 
     void DropApple() {
@@ -30,7 +35,9 @@ public class AppleTree : MonoBehaviour {
     }
 
     void DropBranch() {
-        
+        GameObject branch = Instantiate<GameObject>(branchPrefab);	
+        branch.transform.position = transform.position;
+        Invoke("DropBranch", secondsBetweenBranchDrops);
     }
 
     void Update() {

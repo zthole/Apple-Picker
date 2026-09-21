@@ -25,9 +25,13 @@ public class ApplePicker : MonoBehaviour {
     }
 
     public void AppleMissed() {
-        // Destroy all of the falling apples
+        // Destroy all of the falling objects
         GameObject[] appleArray = GameObject.FindGameObjectsWithTag("Apple");
+        GameObject[] branchArray = GameObject.FindGameObjectsWithTag("Branch");
         foreach (GameObject tempGO in appleArray) {
+            Destroy(tempGO);
+        }
+        foreach (GameObject tempGO in branchArray) {
             Destroy(tempGO);
         }
 
@@ -36,7 +40,7 @@ public class ApplePicker : MonoBehaviour {
         int basketIndex = basketList.Count -1;
         // Get a reference to that Basket GameObject
         GameObject basketGO = basketList[basketIndex];
-        // Remove the Basket from teh list and destroy the GameObject
+        // Remove the Basket from the list and destroy the GameObject
         basketList.RemoveAt(basketIndex);
         Destroy(basketGO);
 
@@ -47,6 +51,18 @@ public class ApplePicker : MonoBehaviour {
     }
 
     public void BranchCaught() {
-        
+        // Destroy all of the falling objects
+        GameObject[] appleArray = GameObject.FindGameObjectsWithTag("Apple");
+        GameObject[] branchArray = GameObject.FindGameObjectsWithTag("Branch");
+        foreach (GameObject tempGO in appleArray) {
+            Destroy(tempGO);
+        }
+        foreach (GameObject tempGO in branchArray) {
+            Destroy(tempGO);
+        }
+
+        // End the game
+        int basketIndex = basketList.Count -4;
+        GameObject basketGO = basketList[basketIndex];
     }
 }
