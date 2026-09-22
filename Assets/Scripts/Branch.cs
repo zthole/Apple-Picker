@@ -9,7 +9,7 @@ public class Branch : MonoBehaviour {
             // Get a reference to the ApplePicker component of Main Camera
             ApplePicker apScript = Camera.main.GetComponent<ApplePicker>();
             // Call the BranchCaught() method
-            BranchCaught();
+            // BranchCaught();
         }
     }
 }
