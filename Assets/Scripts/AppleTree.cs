@@ -6,6 +6,7 @@ public class AppleTree : MonoBehaviour {
     // Prefab for instantiating objects
     public GameObject applePrefab;
     public GameObject branchPrefab;
+    public ScoreCounter scoreCounter;
 
     // Speed at which the AppleTree	moves
     public float speed = 1f;
@@ -20,9 +21,13 @@ public class AppleTree : MonoBehaviour {
     public float secondsBetweenAppleDrops = 1f;
 
     // Rate at which Branches will be instantiated
-    public float secondsBetweenBranchDrops = 5f;
+    public float secondsBetweenBranchDrops = 7f;
 
     void Start() {
+        // Find the ScoreCounter in the scene
+        GameObject scoreGO = GameObject.Find("ScoreCounter");
+        scoreCounter = scoreGO.GetComponent<ScoreCounter>();
+
         // Dropping apples every second
         Invoke("DropApple",	2f);
         Invoke("DropBranch", 2f);
@@ -35,9 +40,15 @@ public class AppleTree : MonoBehaviour {
     }
 
     void DropBranch() {
-        GameObject branch = Instantiate<GameObject>(branchPrefab);	
-        branch.transform.position = transform.position;
-        Invoke("DropBranch", secondsBetweenBranchDrops);
+        if (scoreCounter.score >= 1000) {
+            GameObject branch = Instantiate<GameObject>(branchPrefab);	
+            branch.transform.position = transform.position;
+            Invoke("DropBranch", secondsBetweenBranchDrops);
+        }
+        else {
+            // Keep checking until the score reaches 1000
+            Invoke("DropBranch", 1f);
+        }
     }
 
     void Update() {

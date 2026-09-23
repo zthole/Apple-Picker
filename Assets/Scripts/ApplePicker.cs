@@ -62,7 +62,6 @@ public class ApplePicker : MonoBehaviour {
         }
 
         // End the game
-        int basketIndex = basketList.Count -4;
-        GameObject basketGO = basketList[basketIndex];
+        SceneManager.LoadScene("_Scene_1");
     }
 }

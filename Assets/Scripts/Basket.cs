@@ -36,6 +36,9 @@ public class Basket : MonoBehaviour {
 
         if (collidedWith.tag == "Branch") {
             Destroy(collidedWith);
+            // End the game
+            ApplePicker apScript = Camera.main.GetComponent<ApplePicker>();
+            apScript.BranchCaught();
         }
     }
 }
