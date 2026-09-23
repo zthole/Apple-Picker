@@ -20,9 +20,6 @@ public class AppleTree : MonoBehaviour {
     // Rate at which Apples will be instantiated
     public float secondsBetweenAppleDrops = 1f;
 
-    // Rate at which Branches will be instantiated
-    public float secondsBetweenBranchDrops = 7f;
-
     void Start() {
         // Find the ScoreCounter in the scene
         GameObject scoreGO = GameObject.Find("ScoreCounter");
@@ -43,7 +40,9 @@ public class AppleTree : MonoBehaviour {
         if (scoreCounter.score >= 1000) {
             GameObject branch = Instantiate<GameObject>(branchPrefab);	
             branch.transform.position = transform.position;
-            Invoke("DropBranch", secondsBetweenBranchDrops);
+            // Rate at which Branches will be instantiated
+            float randomDelay = Random.Range(5f, 10f);
+            Invoke("DropBranch", randomDelay);
         }
         else {
             // Keep checking until the score reaches 1000

@@ -46,7 +46,10 @@ public class ApplePicker : MonoBehaviour {
 
         // If there are no Baskets left, restart the game
         if (basketList.Count == 0) {
-            SceneManager.LoadScene("_Scene_0");
+            PlayerPrefs.SetInt("GameOver", 1);
+            PlayerPrefs.Save();
+            // Send back to title screen
+            SceneManager.LoadScene("_Scene_1");
         } 
     }
 
@@ -61,7 +64,9 @@ public class ApplePicker : MonoBehaviour {
             Destroy(tempGO);
         }
 
-        // End the game
+        PlayerPrefs.SetInt("GameOver", 1);
+        PlayerPrefs.Save();
+        // Send back to title screen
         SceneManager.LoadScene("_Scene_1");
     }
 }
